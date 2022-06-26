@@ -1,7 +1,13 @@
+import { SignComponent } from './page/sign/sign.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path:'',
+    component: SignComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
