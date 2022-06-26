@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -34,4 +35,17 @@ export class AuthService {
     localStorage.removeItem('acces_token');
     this.router.navigate(['']);
   }
+
+  // Adição da Lib @auth0/angular-jwt
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('acces_token');
+
+    if(!token) return false
+
+    const jwtHelper = new JwtHelperService();
+
+    return !jwtHelper.isTokenExpired(token);
+
+  }
+
 }
